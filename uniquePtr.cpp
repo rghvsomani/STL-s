@@ -11,7 +11,8 @@ class UniquePtr{
     
     public:
 
-    UniquePtr(T *obj=nullptr):ptr(obj)
+    // Constructor
+    explicit UniquePtr(T* p = nullptr) : ptr(p) {}
     {
         cout<<"Ctor called"<<endl;
     };
