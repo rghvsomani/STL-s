@@ -92,3 +92,47 @@ int main()
 
 
 }
+
+*******************************************************************************************************************
+
+template<typename T>
+class UniquePtr {
+    T* ptr;
+public:
+    // Constructor
+    explicit UniquePtr(T* p = nullptr) : ptr(p) {}
+
+    // Destructor
+    ~UniquePtr() { delete ptr; }
+
+    // Disable copy semantics
+    UniquePtr(const UniquePtr&) = delete;
+    UniquePtr& operator=(const UniquePtr&) = delete;
+
+    // Move semantics
+    UniquePtr(UniquePtr&& other) : ptr(other.ptr) {
+        other.ptr = nullptr;
+    }
+    UniquePtr& operator=(UniquePtr&& other) {
+        if (this != &other) {
+            delete ptr;
+            ptr = other.ptr;
+            other.ptr = nullptr;
+        }
+        return *this;
+    }
+
+    // Access
+    T& operator*() const { return *ptr; }
+    T* operator->() const { return ptr; }
+    T* get() const { return ptr; }
+    void reset(T* p = nullptr) {
+        delete ptr;
+        ptr = p;
+    }
+    T* release() {
+        T* old = ptr;
+        ptr = nullptr;
+        return old;
+    }
+};
