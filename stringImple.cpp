@@ -1,3 +1,10 @@
+
+
+
+
+This Implementation is wrong , see string.cpp 
+
+
 #include <iostream>
 
 using namespace std;
