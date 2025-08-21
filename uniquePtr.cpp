@@ -86,6 +86,11 @@ class UniquePtr{
 int main()
 {
     UniquePtr<int> ptr1(new int(10));
+    //Below Compiles but it is pointer to a unique pointer to an int. ptr is raw ptr , if ptr is not deleted the uique_ptr destructor is also not called    
+    UniquePtr<int> *ptr = new UniquePtr<int>(new int(2)); 
+    //Below is Array of pointer pointing to unique pointer which is pointer to int, so in this unique ptyr contructor is called 5 times , if ptr is not deleted the uique_ptr destructor is also not called    
+    UniquePtr<int> *ptr2 = new UniquePtr<int>[5]; 
+
     //UniquePtr ptr2=ptr1;//Compilation error
     //UniquePtr ptr3(ptr1);
     UniquePtr<int> ptr4;
