@@ -55,3 +55,28 @@ public:
         data = nullptr; // For clarity
     }
 };
+
+int main(){
+    //This will give error
+    // Test obj;
+    
+    //Para Constructore 
+    Test obj(10);
+    
+    //All form of copy constructor
+    Test obj2 = obj;
+    Test obj3(obj);
+    Test obj4 = Test(obj);
+    
+    //All form of Move constructor
+    Test move1 = std::move(obj);
+    Test move2(std::move(obj));
+    Test move3 = Test(10);  // para constructor //However, in some cases, compilers may use move constructor for 
+                            // optimization (copy elision or return value optimization), but strictly speaking, 
+                            // this line only calls the constructor with int parameter.
+                            
+    //Move operator
+    obj = std::move(obj2);      // Self-move assignment
+    obj2 = std::move(obj2);      // Invokes: operator=(Test&& obj)
+    
+}
