@@ -23,8 +23,12 @@ public:
         }
         return *this;
     }
-
-    // Move Constructor
+    /*
+    * Move semantics :- 
+    * Standard containers (like std::vector) rely on move operations being noexcept for optimal performance and exception safety.
+    * If move operations can throw, containers may fall back to copy operations, which are slower.
+    */
+    // Move Constructor --> steel the data not copy the data
     Test(Test&& obj) noexcept : data(nullptr) {
         cout << "move constructor" << endl;
         if (this != &obj) { // Self-move check (rare, but for completeness)
