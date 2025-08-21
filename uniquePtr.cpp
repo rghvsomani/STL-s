@@ -11,6 +11,11 @@ class UniquePtr{
     
     public:
 
+/*
+    Constructor	What happens with foo(ptr)?	What happens with foo(5)?	Safe?
+    explicit	Only works with explicit cast	Error (won’t compile)	YES
+    non-explicit	Implicitly converts	Implicitly converts	NO
+*/
     // Constructor
     explicit UniquePtr(T* p = nullptr) : ptr(p) {}
     {
